@@ -4,7 +4,6 @@ index.html: index.md
 		--novalid \
 		--nonet \
 		--stringparam generate.toc no \
-		--stringparam highlight no \
 		xmark.xsl - > index.html
 
 clean:

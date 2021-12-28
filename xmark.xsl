@@ -8,9 +8,7 @@ XSLT Stylesheet to generate tufte-css styled web pages from CommonMark documents
         <xsl:output indent='no' version='1.0' omit-xml-declaration='yes' encoding='UTF-8' method='xml'  />
         <xsl:strip-space elements='cm:heading cm:paragraph cm:text cm:link cm:emph pre'/>
 
-        <!-- options to generate table of contents and to include syntax highlighting -->
         <xsl:param name="generate.toc" select="'yes'"/>
-        <xsl:param name='highlight' select="'yes'" />
 
         <!-- title and subtitle -->
         <xsl:variable name='title' select='/cm:document/cm:heading[@level = "1"][1]' />
@@ -22,9 +20,6 @@ XSLT Stylesheet to generate tufte-css styled web pages from CommonMark documents
                 <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;</xsl:text>
                 <html>
                         <head>
-                                <xsl:if test='not($highlight = "no")'>
-                                        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css" />
-                                </xsl:if>
                                 <link rel="stylesheet" href="tufte.css"/>
                                 <meta charset="UTF-8" />
                                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -55,16 +50,6 @@ XSLT Stylesheet to generate tufte-css styled web pages from CommonMark documents
                                         </xsl:if>
                                         <xsl:apply-templates/>
                                 </article>
-                                <xsl:if test='not($highlight = "no")'>
-                                        <script src='http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js'>//</script>
-                                        <script>
-                                                try {
-                                                        hljs.initHighlightingOnLoad();
-                                                } catch(e) {
-                                                        console.log(e);
-                                                        }
-                                        </script>
-                                </xsl:if>
                         </body>
                 </html>
         </xsl:template>
@@ -178,14 +163,7 @@ XSLT Stylesheet to generate tufte-css styled web pages from CommonMark documents
         <xsl:template match='cm:code_block'>
                 <pre class='code'>
                         <xsl:element name='code'>
-                                <xsl:choose>
-                                        <xsl:when test='@info != ""'>
-                                                <xsl:attribute name='class'>language-<xsl:value-of select='@info'/> code</xsl:attribute>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                                <xsl:attribute name='class'>nohighlight code</xsl:attribute>
-                                        </xsl:otherwise>
-                                </xsl:choose>
+                                <xsl:attribute name='class'>code</xsl:attribute>
                                 <xsl:value-of select='text()' />
                         </xsl:element>
                 </pre>

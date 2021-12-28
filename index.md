@@ -9,7 +9,7 @@
 
 [tufte-css](https://edwardtufte.github.io/tufte-css/) provides tools to style web articles using the ideas demonstrated by Edward Tufte's books and handouts. It was created by [Dave Liepmann](http://www.daveliepmann.com/) in late 2015 and is now an Edward Tufte project.
 
-[xmark](https://github.com/vieiro/xmark) is a simple XSLT stylesheet that transforms CommonMark compliant plain text documents ([see the source of this one here](https://raw.githubusercontent.com/vieiro/xmark/master/test.markdown)), with some additional conventions, into tufte-css styled web pages. 
+[xmark](https://github.com/vieiro/xmark) is a simple XSLT stylesheet that transforms CommonMark compliant plain text documents ([see the source of this one here](https://raw.githubusercontent.com/vieiro/xmark/master/test.markdown)), with some additional conventions, into tufte-css styled web pages.
 
 This document enumerates the goals of xmark, its conventions and explains how to use it.
 
@@ -27,7 +27,7 @@ The second goal of xmark is to serve as a tool to manipulate the XML structure g
 
 ## xmark conventions
 
-Nor Markdown nor CommonMark support document metadata so, for instance, there is no standard way to specify a title in a CommonMark document. It is not possible either to mark a paragraph as an epigraph, or as a figure caption, or as a margin note. 
+Nor Markdown nor CommonMark support document metadata so, for instance, there is no standard way to specify a title in a CommonMark document. It is not possible either to mark a paragraph as an epigraph, or as a figure caption, or as a margin note.
 
 [*Def. xmark convention*: a simple rule that allows emulating metadata in CommonMark markdown documents.](sidenote) These limitations in Markdown, and in the CommonMark standard, are overcome in xmark by means of conventions, that assign special meanings to paragraphs. This section lists these conventions:
 
@@ -60,7 +60,7 @@ It does not matter where you specify the subtitle in the source document, xmark 
 
 CommonMark does not support epigraphs, but allows for nested block quotes. xmark makes use of this feature, making the double-nested block quotes work as epigraphs:
 
-> Two-level nested block quotes (i.e., a pagraph starting with ```>>```) are always transformed to epigraphs. 
+> Two-level nested block quotes (i.e., a pagraph starting with ```>>```) are always transformed to epigraphs.
 
 So, for instance, this text:
 
@@ -76,7 +76,7 @@ Epigraphs may also contain a footer using plain HTML, but you will have to speci
 
 ```markdown
 >> I do not paint things, I paint only the differences between things.
->> <footer>Henri Matisse, <cite>Henri Matisse Dessins: 
+>> <footer>Henri Matisse, <cite>Henri Matisse Dessins:
 >> thèmes et variations</cite> (Paris, 1943), 37</footer></blockquote>
 ```
 
@@ -87,7 +87,7 @@ That gets translated in the following HTML:
 
 ### Sidenote convention
 
-Nor markdown nor CommonMark support sidenotes [Sidenotes are like footnotes, except they don't force the user to scroll the page](sidenote). 
+Nor markdown nor CommonMark support sidenotes [Sidenotes are like footnotes, except they don't force the user to scroll the page](sidenote).
 
 Markdown uses the ```[link text](url)``` structure to define links. xmark abuses this structure with the following convention:
 
@@ -96,10 +96,10 @@ Markdown uses the ```[link text](url)``` structure to define links. xmark abuses
 Sidenote numbers are automatically generated, so there's no need to worry about that detail.
 
 ``` markdown
-This is a normal paragraph with a 
-sidenote [Write your sidenotes 
-inside square brackets and then 
-add a ```(sidenote)``` 
+This is a normal paragraph with a
+sidenote [Write your sidenotes
+inside square brackets and then
+add a ```(sidenote)```
 url.](sidenote).
 ```
 
@@ -118,7 +118,7 @@ Margin notes are just like sidenotes, but do not have footnote-style numbers. Th
 So, for instance, the markdown text:
 
 ```markdown
-For example, this paragraph has a 
+For example, this paragraph has a
 [Margin note text here](margin)
 margin note.
 ```
@@ -142,7 +142,7 @@ that gets translated by CommonMark into the following HTML:
 <img src='url' alt='alt' title='title' />
 ```
 
-Sadly nor CommonMark nor Markdown support figures with captions [(there's an ongoing discussion, though)](http://talk.commonmark.org/t/image-tag-should-expand-to-figure-when-used-with-title/265/5). 
+Sadly nor CommonMark nor Markdown support figures with captions [(there's an ongoing discussion, though)](http://talk.commonmark.org/t/image-tag-should-expand-to-figure-when-used-with-title/265/5).
 
 To overcome this limitation xmark uses the following convention
 
@@ -151,9 +151,9 @@ To overcome this limitation xmark uses the following convention
 So, for instance, the following text:
 
 ``` markdown
-![From Edward Tufte, *Visual Display of 
-Quantitative Information*, 
-page 92.](tufte-css/img/exports-imports.png 
+![From Edward Tufte, *Visual Display of
+Quantitative Information*,
+page 92.](tufte-css/img/exports-imports.png
 "Visual Display of Quantitative Information")
 ```
 
@@ -165,11 +165,11 @@ Note that figures are automatically numbered by xmark.
 
 ### Margin and full-width figure conventions
 
-Graphics that are ancillary to the main body of the text are placed in margin figures in tufte-css. 
+Graphics that are ancillary to the main body of the text are placed in margin figures in tufte-css.
 
-But CommonMark and Markdown have just a single construct for images.  ![F.J. Cole, “The History of Albrecht Dürer’s Rhinoceros in Zooological Literature,” *Science, Medicine, and History: Essays on the Evolution of Scientific Thought and Medical Practice (London, 1953)*, ed. E. Ashworth Underwood, 337-356. From page 71 of Edward Tufte’s *Visual Explanations*.](tufte-css/img/rhino.png "margin Rhino image") 
+But CommonMark and Markdown have just a single construct for images.  ![F.J. Cole, “The History of Albrecht Dürer’s Rhinoceros in Zooological Literature,” *Science, Medicine, and History: Essays on the Evolution of Scientific Thought and Medical Practice (London, 1953)*, ed. E. Ashworth Underwood, 337-356. From page 71 of Edward Tufte’s *Visual Explanations*.](tufte-css/img/rhino.png "margin Rhino image")
 
-How could xmark support margin figures easily? By abusing the construct, of course. 
+How could xmark support margin figures easily? By abusing the construct, of course.
 
 xmark abuses the title part of the image (that appears when you place the mouse over the image for a while), and if the title starts with the word 'margin' then the image is placed in a margin note, and if the title starts with the word 'fullwidth' then the image will be rendered as a full-width figure. The conventions are then:
 
@@ -186,12 +186,12 @@ So any image constructed like this:
 (note the ```margin``` word at the beginning of the title) will be considered a margin figure.
 
 And the following markup:
-    
+
 ```markdown
-![Edward Tufte’s English translation of the 
-Napoleon’s March data visualization. 
+![Edward Tufte’s English translation of the
+Napoleon’s March data visualization.
 From *Beautiful Evidence*, page
-122-124.](tufte-css/img/napoleons-march.png 
+122-124.](tufte-css/img/napoleons-march.png
 "fullwidth Napoleon's march").
 ```
 
@@ -234,12 +234,6 @@ You can disable this feature by setting the XSLT parameter ```generate-toc``` to
 ### Sections
 
 xmark does not generate ```<section>``` HTML 5 tags.
-
-### Syntax highlighting
-
-xmark automatically embeds some ```<script>``` and CSS stylesheets from [highlight.js](https://github.com/isagalaev/highlight.js) to enable language-specific syntax highlighting.
-
-You can disable this feature by setting the XSLT parameter ```highlight``` to ```no```.
 
 ## Using xmark
 
