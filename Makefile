@@ -1,10 +1,11 @@
-index.html: index.md
-	cmark -t xml index.md | \
-	xsltproc \
-		--novalid \
-		--nonet \
-		--stringparam generate.toc no \
-		xmark.xsl - > index.html
+PAGES := $(patsubst %.md,%.html,$(wildcard *.md ./**/*.md))
+all: $(PAGES)
+
+%.html: %.md
+	cmark -t xml $< | \
+	xsltproc --novalid --nonet \
+	--stringparam generate.toc no \
+	xmark.xsl - > $@
 
 clean:
-	rm index.html
+	fd -e html -x rm {}
