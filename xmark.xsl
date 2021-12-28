@@ -25,7 +25,7 @@ XSLT Stylesheet to generate tufte-css styled web pages from CommonMark documents
                                 <xsl:if test='not($highlight = "no")'>
                                         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/default.min.css" />
                                 </xsl:if>
-                                <link rel="stylesheet" href="tufte-css/tufte.css"/>
+                                <link rel="stylesheet" href="tufte.css"/>
                                 <meta charset="UTF-8" />
                                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                                 <title><xsl:value-of select='$title/cm:text/text()' /></title>
@@ -217,7 +217,7 @@ XSLT Stylesheet to generate tufte-css styled web pages from CommonMark documents
 
         <!-- softbreaks -->
         <xsl:template match="cm:softbreak">
-                <xsl:text> 
+                <xsl:text>
 </xsl:text>
         </xsl:template>
 
@@ -287,8 +287,8 @@ XSLT Stylesheet to generate tufte-css styled web pages from CommonMark documents
                         <xsl:apply-templates/>
                 </em>
         </xsl:template>
-        <!-- 
-             Hack template to generate HTML elements from escaped stuff 
+        <!--
+             Hack template to generate HTML elements from escaped stuff
              &gt;/hola> will generate </hola>
         -->
         <xsl:template name='html-end'>
@@ -308,8 +308,8 @@ XSLT Stylesheet to generate tufte-css styled web pages from CommonMark documents
                         </xsl:otherwise>
                 </xsl:choose>
         </xsl:template>
-        <!-- 
-             template function to generate a start element 
+        <!--
+             template function to generate a start element
              &myhtml; will generate <myhtml>
         -->
         <xsl:template name='html-start'>
